@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="started">00:00:00</h1>
+    <button onclick="start()">start</button>
+    <button onclick="stop()">stop</button>
+    <button onclick="reset()">reset</button>
+    <script>
+         let [second,minute,hour]=[0,0,0];
+        let begain=document.querySelector('#started');
+
+        let timer=null;
+        function stopwatach(){
+            second++;
+            if(second==60){
+                second=0;
+                minute++;
+            }if(minute==60){
+                minute=0;
+                hour++;
+            }
+            begain.innerHTML=hour+':'+minute+':'+second;
+            // let h= h < 10? '0'+ hour:hour;
+            // let m= m<10?'0'+minute:minute;
+            // let s= s<10?'0'+second:second;
+    
+        }
+        function start(){
+            if(timer!==null){
+                clearInterval(timer);
+            }
+           timer= setInterval(stopwatach,1000);
+        }
+        function stop(){
+            clearInterval(timer);
+        }
+        function reset(){
+            clearInterval(timer);
+            let [second,minute,hour]=[0,0,0];
+            begain.innerHTML='00:00:00';
+            
+        }
+    </script>
+</body>
+</html>
